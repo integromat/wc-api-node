@@ -54,6 +54,7 @@ WooCommerceAPI.prototype._setDefaultsOptions = function(opt) {
   this.queryStringAuth = opt.queryStringAuth || false;
   this.port            = opt.port || '';
   this.timeout         = opt.timeout;
+  this.client          = opt.client || request;
 };
 
 /**
@@ -160,10 +161,9 @@ WooCommerceAPI.prototype._request = function(method, endpoint, data, callback) {
     method: method,
     encoding: this.encoding,
     timeout: this.timeout,
+    json: true,
     headers: {
-      'User-Agent': 'WooCommerce API Client-Node.js/' + this.classVersion,
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'User-Agent': 'WooCommerce API Client-Node.js/' + this.classVersion
     }
   };
 
@@ -191,14 +191,14 @@ WooCommerceAPI.prototype._request = function(method, endpoint, data, callback) {
   }
 
   if (data) {
-    params.body = JSON.stringify(data);
+    params.body = data;
   }
 
   if (!callback) {
-    return request(params);
+    return this.client(params);
   }
 
-  return request(params, callback);
+  return this.client(params, callback);
 };
 
 /**
