@@ -1,7 +1,7 @@
 {
-  "name": "woocommerce-api",
+  "name": "@integromat/woocommerce-api",
   "description": "A Node.js wrapper for the WooCommerce REST API",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "scripts": {
     "lint": "jshint .",
     "checkStyle": "jscs .",
@@ -34,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:woocommerce/wc-api-node.git"
+    "url": "git@github.com:integromat/wc-api-node.git"
   }
 }
